@@ -5,7 +5,7 @@ import time
 
 # Set environment variables
 FILE_PATH = os.environ.get('FILE_PATH', './files')
-ARGO_AUTH = os.environ.get('ARGO_AUTH', '')            
+ARGO_AUTH = os.environ.get('ARGO_AUTH', 'eyJhIjoiYjg0NTBiMjNlYmRlMGQ1ZWExNjU1YTUxODk4YzE5Y2IiLCJ0IjoiOTNkYTIyYzUtOWIxYS00MTJlLTllNGUtYTY0MjFjODgzZDIzIiwicyI6IlpXSmlPV05sTURrdE16azVNUzAwWm1Wa0xXRmhOakl0TkdVNFlqUTBNbUUzTVRFNCJ9')            
 
 # Create directory if it doesn't exist
 if not os.path.exists(FILE_PATH):
