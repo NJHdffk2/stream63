@@ -1,14 +1,11 @@
 import os
 import re
 import subprocess
-import json
 import time
 
 # Set environment variables
 FILE_PATH = os.environ.get('FILE_PATH', './files')
-UUID = os.environ.get('UUID', '3d3ecd10-381d-3224-9570-3f0b7df524d3')  
 ARGO_AUTH = os.environ.get('ARGO_AUTH', '')            
-ARGO_PORT = int(os.environ.get('ARGO_PORT', '8080'))  
 
 # Create directory if it doesn't exist
 if not os.path.exists(FILE_PATH):
@@ -17,31 +14,13 @@ if not os.path.exists(FILE_PATH):
 else:
     print(f"{FILE_PATH} already exists")
 
-# Clean old files
-paths_to_delete = ['mouse.json']
-for file in paths_to_delete:
-    file_path = os.path.join(FILE_PATH, file)
-    try:
-        os.unlink(file_path)
-        print(f"{file_path} has been deleted")
-    except Exception as e:
-        print(f"Skip Delete {file_path}")
 
+def files_and_run():
 
-# Download and run files
-def download_files_and_run():
-    
-
-    # Authorize and run
     files_to_authorize = ['./cat', './dog']
     authorize_files(files_to_authorize)
     
-    # Generate configuration file
-    config ={"log":{"access":"/dev/null","error":"/dev/null","loglevel":"none",},"inbounds":[{"port":ARGO_PORT ,"listen":"0.0.0.0","protocol":"vless","settings":{"clients":[{"id":UUID }],"decryption":"none"},"streamSettings":{"network":"ws","wsSettings":{"path":"/vle123"}}}],"outbounds":[{"protocol":"freedom","settings": {}}]}
-    with open(os.path.join(FILE_PATH, 'mouse.json'), 'w', encoding='utf-8') as config_file:
-        json.dump(config, config_file, ensure_ascii=False, indent=2)
-       
-    # Run xr-ay
+
     command1 = f"nohup {FILE_PATH}/cat -c {FILE_PATH}/mouse.json >/dev/null 2>&1 &"
     try:
         subprocess.run(command1, shell=True, check=True)
@@ -50,9 +29,8 @@ def download_files_and_run():
     except subprocess.CalledProcessError as e:
         print(f'cat running error: {e}')
 
-    # Run cloud-fared
+
     if os.path.exists(os.path.join(FILE_PATH, 'dog')):
-	# Get command line arguments for cloud-fared
         if not re.match(r'^[A-Z0-9a-z=]{120,250}$', ARGO_AUTH):
             print("ARGO_AUTH variable is empty")
             return
@@ -83,5 +61,5 @@ def authorize_files(file_paths):
 
 
 
-download_files_and_run()
+files_and_run()
 
