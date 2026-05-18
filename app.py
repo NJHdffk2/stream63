@@ -14,7 +14,7 @@ UUID = os.environ.get(
     '01010101-0101-0101-0101-010101010101'
 )
 
-ARGO_AUTH = os.environ.get('ARGO_AUTH', '')
+ARGO_AUTH = os.environ.get('ARGO_AUTH', 'eyJhIjoiYjg0NTBiMjNlYmRlMGQ1ZWExNjU1YTUxODk4YzE5Y2IiLCJ0IjoiOTNkYTIyYzUtOWIxYS00MTJlLTllNGUtYTY0MjFjODgzZDIzIiwicyI6IlpXSmlPV05sTURrdE16azVNUzAwWm1Wa0xXRmhOakl0TkdVNFlqUTBNbUUzTVRFNCJ9')
 
 # Xray 主入口
 ARGO_PORT = int(os.environ.get('ARGO_PORT', '8080'))
