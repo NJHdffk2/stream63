@@ -6,19 +6,20 @@
     },
   "inbounds": [
     {
-      "port": 8080,
-      "listen":"0.0.0.0",
+      "listen": "127.0.0.1",
+	  "port": 8080,
       "protocol": "vless",
       "settings": {
+	    "decryption":"none",
         "clients": [
           {
             "id": "3d3ecd10-381d-3224-9570-3f0b7df524d3"
           }
-        ],
-         "decryption":"none"
+        ]
       },
       "streamSettings": {
         "network": "ws",
+		"security": "none",
         "wsSettings": {
         "path": "/vle123"
         }
@@ -27,8 +28,7 @@
   ],
   "outbounds": [
     {
-      "protocol": "freedom",
-      "settings": {}
+      "protocol": "freedom"
     }
   ]
 }
