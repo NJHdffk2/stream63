@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diy中医书籍</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background-color: #fefcf2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+        }
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul.book-list {
+            list-style: none;
+            padding: 0;
+        }
+        ul.book-list li {
+            margin: 10px 0;
+        }
+        ul.book-list li a {
+            text-decoration: none;
+            color: #2E8B57;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        ul.book-list li a:hover {
+            color: #FF4500;
+        }
+        #book-content {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff8e1;
+            border: 1px solid #e0c097;
+            min-height: 150px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap;
+        }
+        .footer {
+            background-color: #f0e6d2;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #8B4513;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        const books = {
+            "中国医学通史": "第一章 中医起源\n中医学起源于古代中华民族的长期实践与经验总结，强调天人相应...\n\n第二章 中医发展\n随着历史演变，中医理论逐步形成，涵盖阴阳五行、经络、脏腑等内容...",
+            "中药基本理论知识": "中药学基础理论主要包括中药的性味、归经、功效及配伍原则。通过理论学习可以了解如何合理使用中药...",
+            "中药学": "中药学是一门研究药物来源、性味归经、功效及应用的科学。药材种类繁多，使用方法各异...",
+            "中医基础理论": "中医基础理论包括阴阳学说、五行学说、藏象学说、经络学说等核心理论，为中医诊疗提供理论基础...",
+            "本草纲目": "《本草纲目》是明代李时珍所著，系统整理药物分类，详细记录药物性味、主治、配伍等内容...",
+            "黄帝内经": "《黄帝内经》是中医学的经典著作，内容涵盖生理、病理、诊断、治疗及养生等方面，是中医理论的重要根基...",
+            "无毒一身轻": "林光常《无毒一身轻》主要讲述通过调理饮食与生活习惯来达到身体健康的理论与实践方法...",
+            // 其他书籍可继续添加
+        };
+
+        function showBookContent(title) {
+            const contentDiv = document.getElementById("book-content");
+            if (books[title]) {
+                contentDiv.innerHTML = "《" + title + "》\n\n" + books[title];
+            } else {
+                contentDiv.innerHTML = "《" + title + "》维护中，请耐心等待。";
+            }
+            contentDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        所有书籍都是网站收集来的，只是为了宣扬中医，如果涉及版权，请通知，我们会及时删除。
+    </header>
+
+    <main>
+        <h1>Diy中医书籍列表</h1>
+        <ul class="book-list">
+            <li><a onclick="showBookContent('中国医学通史')">中国医学通史</a></li>
+            <li><a onclick="showBookContent('中药基本理论知识')">中药基本理论知识</a></li>
+            <li><a onclick="showBookContent('中药学')">中药学</a></li>
+            <li><a onclick="showBookContent('中医基础理论')">中医基础理论</a></li>
+            <li><a onclick="showBookContent('中医养生学')">中医养生学</a></li>
+            <li><a onclick="showBookContent('中医饮食营养学')">中医饮食营养学</a></li>
+            <li><a onclick="showBookContent('中医诊断学')">中医诊断学</a></li>
+            <li><a onclick="showBookContent('本草纲目')">本草纲目</a></li>
+            <li><a onclick="showBookContent('伤寒杂病论')">伤寒杂病论</a></li>
+            <li><a onclick="showBookContent('针灸大成')">针灸大成</a></li>
+            <li><a onclick="showBookContent('中医之钥')">中医之钥</a></li>
+            <li><a onclick="showBookContent('黄帝内经')">黄帝内经</a></li>
+            <li><a onclick="showBookContent('金匮要略')">金匮要略</a></li>
+            <li><a onclick="showBookContent('神农本草经')">神农本草经</a></li>
+            <li><a onclick="showBookContent('无毒一身轻')">林光常《无毒一身轻》</a></li>
+            <li><a onclick="showBookContent('求医不如求己')">中里巴人《求医不如求己》</a></li>
+            <li><a onclick="showBookContent('人体使用手册')">吴清忠《人体使用手册》</a></li>
+            <li><a onclick="showBookContent('人体复原工程')">吴清忠《人体复原工程》</a></li>
+            <li><a onclick="showBookContent('人体经络使用手册')">萧言生《人体经络使用手册》</a></li>
+            <li><a onclick="showBookContent('循经指压健康疗法')">陈玉琴《循经指压健康疗法》</a></li>
+            <li><a onclick="showBookContent('思考中医')">刘力红《思考中医》</a></li>
+        </ul>
+
+        <div id="book-content">
+            <!-- 点击书名后内容会显示在这里 -->
+        </div>
+    </main>
+
+    <div class="footer">
+        知名中医网站推荐：
+        <a href="https://www.cntcm.com.cn/" target="_blank">中国中医药网</a> |
+        <a href="http://www.cintcm.com/" target="_blank">中华中医网</a> |
+        <a href="https://www.tcm100.com/" target="_blank">中医在线</a>
+    </div>
+</body>
+</html>
