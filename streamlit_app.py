@@ -2,22 +2,20 @@ import os
 import subprocess
 import streamlit as st
 import threading
-import asyncio
 
 # 设置页面
 st.set_page_config(page_title="Honey", layout="wide")
 
-# 全局日志变量（线程安全）
-log_buffer = []
+st.title("successfully")
 
-# UI 控制状态
+# 控制状态
 if "running" not in st.session_state:
     st.session_state.running = False
 if "auto_started" not in st.session_state:
-    st.session_state.auto_started = False  # 控制是否已自动执行完
+    st.session_state.auto_started = False
 
-st.title("successfully")
-
+# 日志缓冲
+log_buffer = []
 
 def run_backend():
     try:
@@ -34,38 +32,29 @@ def run_backend():
         with open("/tmp/deployed.flag", "w") as f:
             f.write("done")
 
-
-async def main():
-    st.session_state.running = True
-    run_backend()
-
-
+# 自动部署
 if not os.path.exists("/tmp/deployed.flag") and not st.session_state.running:
-    def auto_start():
-        asyncio.run(main())
-    threading.Thread(target=auto_start, daemon=True).start()
+    threading.Thread(target=run_backend, daemon=True).start()
     st.info("🚀 正在自动部署，请稍候...")
 
-
-if st.button("get this app back up"):
+# 手动触发按钮
+if st.button("重新部署"):
     if not st.session_state.running:
         log_buffer.clear()
-        threading.Thread(target=lambda: asyncio.run(main()), daemon=True).start()
+        threading.Thread(target=run_backend, daemon=True).start()
         st.success("✅ 已开始执行部署任务")
     else:
         st.warning("⚠️ 部署任务已在运行中")
 
-
+# 显示日志
 if log_buffer:
     st.text_area("📄 部署日志输出", value="\n".join(log_buffer), height=300)
 
-
-video_paths = ""
-for path in video_paths:
-    if os.path.exists(path):
-        st.video(path)
-
-
-image_path = ""
-if os.path.exists(image_path):
-    st.image(image_path, caption="歌曲", use_container_width=True)
+# 显示自己的静态网页 index.html
+index_path = "index.html"
+if os.path.exists(index_path):
+    with open(index_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+    st.components.v1.html(html_content, height=800, scrolling=True)
+else:
+    st.warning("⚠️ index.html 文件未找到，请放在当前目录下")
