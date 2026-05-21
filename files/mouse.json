@@ -13,7 +13,7 @@
 	    "decryption":"none",
         "clients": [
           {
-            "id": "3d3ecd10-381d-3224-9570-3f0b7df524d3"
+            "id": "539c88ea-5782-5bbf-557d-5847a6128b45"
           }
         ]
       },
@@ -21,7 +21,7 @@
         "network": "ws",
 		"security": "none",
         "wsSettings": {
-        "path": "/vle123"
+        "path": "/vle-arg-123"
         }
       }
     }
